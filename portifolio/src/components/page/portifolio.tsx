@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { Github, Mail, ExternalLink, LinkedinIcon } from "lucide-react"
 import { motion } from "framer-motion"
-import Supabase from "@/assets/Supabase.svg"
+import foto from "@/assets/141164334.jfif"
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -24,6 +24,18 @@ const staggerChildren = {
   },
 }
 
+const badgeStyles:any = {
+  blue: "bg-blue-900 text-blue-200",
+  green: "bg-green-900 text-green-200",
+  teal: "bg-teal-900 text-teal-200",
+};
+
+const socialLinks = [
+  { icon: Github, url: "https://github.com/EduardoLCavalcante", name: "GitHub" },
+  { icon: LinkedinIcon, url: "https://www.linkedin.com/in/joseecavalcante/", name: "LinkedIn" },
+  { icon: Mail, url: "mailto:eduardocavalcante131@gmail.com", name: "E-mail" },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-6">
@@ -39,6 +51,7 @@ export default function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
+            
             JE
           </motion.h1>
           <motion.div className="space-x-4" variants={staggerChildren}>
@@ -67,13 +80,12 @@ export default function Home() {
           variants={staggerChildren}
         >
           <motion.div variants={fadeInUp}>
-            {/* <Image
-              src="/placeholder.svg?height=150&width=150"
-              alt="João Silva"
-              width={150}
-              height={150}
-              className="rounded-full mx-auto mb-4 bg-gray-800"
-            /> */}
+            <img
+              src={`${foto}`}
+              alt="foto-perfil"
+
+          className="w-[275px] h-[275px] object-cover rounded-full mx-auto bg-gray-800 max-w-none"
+            />
           </motion.div>
           <motion.h2 variants={fadeInUp} className="text-4xl font-bold mb-4 text-blue-400">
             José Eduardo de L. Cavalcante
@@ -82,15 +94,17 @@ export default function Home() {
             Desenvolvedor Front-end especializado em React, Tailwind CSS e Supabase
           </motion.p>
           <motion.div variants={fadeInUp} className="flex justify-center space-x-4">
-            {[Github, LinkedinIcon, Mail].map((Icon, index) => (
-              <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <Button variant="outline" size="icon" className="text-gray-300 border-gray-700 hover:bg-gray-800">
+          {socialLinks.map(({ icon: Icon, url, name }, index) => (
+            <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <a href={url} target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="icon" className="text-gray-300 border-gray-700 hover:bg-gray-800 hover:text-white">
                   <Icon className="h-5 w-5" />
-                  <span className="sr-only">{Icon.name}</span>
+                  <span className="sr-only">{name}</span>
                 </Button>
-              </motion.div>
-            ))}
-          </motion.div>
+              </a>
+            </motion.div>
+          ))}
+        </motion.div>
         </motion.section>
 
         <motion.section
@@ -119,11 +133,11 @@ export default function Home() {
               {
                 title: "Supabase",
                 color: "green",
-                icon: Supabase,
+                icon: "M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z",
               },
             ].map((skill) => (
               <motion.div key={skill.title} variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Card className={`bg-gray-800 border-${skill.color}-900`}>
+                <Card className={`bg-gray-800 border-blue-900`}>
                   <CardHeader>
                     <CardTitle className={`flex items-center text-${skill.color}-400`}>
                       <svg viewBox="0 0 24 24" className="h-6 w-6 mr-2">
@@ -157,23 +171,17 @@ export default function Home() {
           <motion.h3 variants={fadeInUp} className="text-3xl font-bold mb-6 text-center text-green-400">
             Projetos
           </motion.h3>
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-6" variants={staggerChildren}>
+          <motion.div className="grid grid-cols-1 items-center mx-auto max-w-screen-md gap-6" variants={staggerChildren}>
             {[
               {
-                title: "Aplicativo React + Supabase",
-                description: "Uma aplicação full-stack mostrando a integração do React com Supabase",
+                title: "Aplicativo React + Supabase + TailwindCSS",
+                description: "Uma aplicação full-stack mostrando a integração do React com Supabase e o uso de uma coleção de componentes UI construídos com Tailwind CSS",
                 color: "blue",
-                badges: ["React", "Supabase"],
-              },
-              {
-                title: "Showcase Tailwind CSS",
-                description: "Uma coleção de componentes UI construídos com Tailwind CSS",
-                color: "teal",
-                badges: ["Tailwind", "React"],
-              },
+                badges: ["React", "Supabase","TailwindCSS"],
+              }
             ].map((project, index) => (
               <motion.div key={index} variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Card className={`bg-gray-800 border-${project.color}-900`}>
+                <Card className={`bg-gray-800 mx-auto border-${project.color}-900`}>
                   <CardHeader>
                     <CardTitle className={`text-${project.color}-400`}>{project.title}</CardTitle>
                     <CardDescription className="text-gray-400">{project.description}</CardDescription>
@@ -186,20 +194,24 @@ export default function Home() {
                     </p>
                   </CardContent>
                   <CardFooter className="flex justify-between">
-                    <div className="flex space-x-2">
-                      {project.badges.map((badge, badgeIndex) => (
-                        <Badge
-                          key={badgeIndex}
-                          className={`bg-${["blue", "green", "teal"][badgeIndex]}-900 text-${["blue", "green", "teal"][badgeIndex]}-200`}
-                        >
-                          {badge}
-                        </Badge>
-                      ))}
+                    <div className="flex space-x-2">     
+                    {project.badges.map((badge, badgeIndex) => {
+                    const color:any = ["blue", "green", "teal"][badgeIndex % 3]; 
+
+                    return (
+                      <Badge key={badgeIndex} className={badgeStyles[color]}>
+                        {badge}
+                      </Badge>
+                    );
+                  })}
+
                     </div>
-                    <Button variant="outline" size="icon" className="text-gray-300 border-gray-700 hover:bg-gray-700">
+                    <a href="https://github.com/EduardoLCavalcante" target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="icon" className="text-gray-300 border-gray-700 hover:bg-blue-400">
                       <ExternalLink className="h-4 w-4" />
                       <span className="sr-only">Ver Projeto</span>
                     </Button>
+                    </a>
                   </CardFooter>
                 </Card>
               </motion.div>
@@ -221,10 +233,12 @@ export default function Home() {
           <motion.p variants={fadeInUp} className="mb-4 text-gray-300">
             Interessado em trabalhar juntos? Vamos conversar!
           </motion.p>
-          <motion.div variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <motion.div  variants={fadeInUp} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <a  href="mailto:eduardocavalcante131@gmail.com" target="_blank" rel="noopener noreferrer">
             <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-              <Mail className="mr-2 h-4 w-4" /> Contate-me
+           <Mail className="mr-2 flex h-4 w-4" /> Contate-me
             </Button>
+            </a>
           </motion.div>
         </motion.section>
       </main>
@@ -235,7 +249,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5 }}
       >
-        <p>&copy; 2025 João Silva. Todos os direitos reservados.</p>
+        <p>&copy; 2025 José Eduardo. Todos os direitos reservados.</p>
       </motion.footer>
     </div>
   )
