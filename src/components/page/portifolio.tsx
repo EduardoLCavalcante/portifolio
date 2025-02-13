@@ -97,7 +97,7 @@ export default function Home() {
           {socialLinks.map(({ icon: Icon, url, name }, index) => (
             <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <a href={url} target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="icon" className="text-gray-300 border-gray-700 hover:bg-gray-800 hover:text-white">
+                <Button variant="outline" size="icon" className="text-black border-gray-700 hover:bg-gray-800 hover:text-white">
                   <Icon className="h-5 w-5" />
                   <span className="sr-only">{name}</span>
                 </Button>
