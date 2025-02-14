@@ -46,14 +46,6 @@ export default function Home() {
         transition={{ duration: 0.5 }}
       >
         <nav className="flex justify-between items-center">
-          <motion.h1
-            className="text-2xl font-bold text-blue-400"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            
-            JE
-          </motion.h1>
           <motion.div className="space-x-4" variants={staggerChildren}>
             {["Sobre", "Habilidades", "Projetos", "Contato"].map((item, index) => (
               <motion.a
